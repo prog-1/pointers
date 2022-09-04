@@ -1,6 +1,6 @@
-# Pointer excercises
+# Pointer exercises
 
-1. Use an array instead of a slice to implement a function, that updates its
+1. Use an array instead of a slice to implement a function that updates its
    elements. Answer the following questions:
    - Try comparing the behavior to other programming languages that you may know
      or heard about.
