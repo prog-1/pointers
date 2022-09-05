@@ -68,11 +68,11 @@ fmt.Println(j) // see the new value of j
 Usually it is better to use [pure functions](https://en.wikipedia.org/wiki/Pure_function), but sooner or later we have to modify memory state:
 
 ```go
-func assignValue(x int)   { x *= 10 }
-func assignPValue(x *int) { *x *= 10 }
+func assignValue(x int)   { x *= 10 }  // x = x * 10
+func assignPValue(x *int) { *x *= 10 } // *x = *x * 10
 func main() {
   i := 123
-  fmt.Println(i) // OUtput: 123
+  fmt.Println(i) // Output: 123
   assignValue(i)
   fmt.Println(i) // Output: 123
   assignPValue(&i)
