@@ -107,6 +107,7 @@ p3 := &s{123} // or p3 := &s{n: 123}
 
 p4 := new(s)
 p4.n = 123 // Go automaticaly dereferences pointers to structures.
+           // Equivalent: (*p4).n = 123
 ```
 
 ## Implicit references in Go
