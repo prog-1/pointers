@@ -94,7 +94,7 @@ func main() {
 ## How can we create pointers?
 
 ```go
-x := int
+var x int
 p1 := &x
 *p1 = 123
 
