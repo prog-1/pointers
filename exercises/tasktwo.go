@@ -14,4 +14,5 @@ func main() {
 	fmt.Println(Doomsday)
 	pointtwo(Doomsday)
 	fmt.Println(Doomsday)
+	//Maps are references
 }
