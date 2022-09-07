@@ -69,7 +69,7 @@
      func Remove(head **Node, x int) (removed bool)
      ```
 
-   Example:
+   Example: <!-- Implementation at https://goplay.tools/snippet/bQFXwxdhTP8 -->
    
    ```go
    var head *Node
@@ -82,5 +82,5 @@
    for cur := head; cur != nil; cur = cur.Next {
       fmt.Print(cur.Value, " ")
    } // Output: 2 3 7 9   
-   fmt.Println;
+   fmt.Println()
    ```
