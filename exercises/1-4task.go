@@ -34,7 +34,7 @@ func main() {
 	updateMap(a)
 	fmt.Println(a) // OUTPUT: map[1:0 2:2 3:3 4:4 5:5]
 	/*
-		Function "updateMap" does affact map in the main function so arrays are passed as reference
+		Function "updateMap" does affact map in the main function so maps are passed as reference
 	*/
 
 	// Append slice
