@@ -10,41 +10,85 @@ type Node struct {
 }
 
 func Prepend(head **Node, x int) {
-	// Plan:
-	// * Create new head
-	// * Make current head new head's next
-	// * Addign new head to current head pointer
 
-	var newHead *Node = new(Node)
-	newHead.Value = x
-	newHead.Next = *head
-
-	*head = newHead
+	*head = &Node{Value: x, Next: *head}
 }
 
 func Append(head **Node, x int) {
 
-	var current *Node = *head
+	current := *head
 	for current.Next != nil {
 		current = current.Next
 	}
 
-	var appended *Node = new(Node)
-	appended.Value = x
-	appended.Next = nil
-	current.Next = appended
+	Prepend(&current, x)
+}
+
+func Insert(head **Node, x int) {
+
+	if x < (*head).Value {
+		Prepend(head, x)
+		return
+	}
+
+	current := *head
+	for current.Next != nil && current.Next.Value < x {
+		current = current.Next
+	}
+
+	inserted := &Node{Value: x, Next: current.Next}
+	current.Next = inserted
+
+}
+
+func Contains(head *Node, x int) bool {
+
+	current := head
+	for current.Next != nil {
+		if current.Value == x {
+			return true
+		}
+	}
+
+	return false
+}
+
+func Remove(head **Node, x int) (removed bool) {
+
+	current := (*head)
+
+	if current.Value == x {
+		(*head) = current.Next
+		return true
+	}
+
+	for current.Next != nil {
+		if current.Next.Value == x {
+			// Deleting Node
+			current.Next = current.Next.Next
+			return true
+		}
+
+		current = current.Next
+	}
+	
+	return false
 }
 
 func main() {
-	var head *Node = new(Node)
-	head.Value = 0
+	head := &Node{2, nil}
 
-	Prepend(&head, 3)
 	Append(&head, 7)
+	Prepend(&head, 3)
+	Insert(&head, 0)
 
 	for cur := head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Value, " ")
 	}
 	fmt.Println()
 
+	fmt.Println(Remove(&head, 2))
+	for cur := head; cur != nil; cur = cur.Next {
+		fmt.Print(cur.Value, " ")
+	}
 }
