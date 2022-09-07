@@ -72,15 +72,14 @@
    Example: <!-- Implementation at https://goplay.tools/snippet/bQFXwxdhTP8 -->
    
    ```go
-   var head *Node
+   var head *Node // Empty sequence.
+   for cur := head; cur != nil; cur = cur.Next { fmt.Println(cur.Value) } // Prints nothing.
    Append(&head, 7)
    Prepend(&head, 3)
    Insert(&head, 4)
    Insert(&head, 2)
    Insert(&head, 9)
    Remove(&head, 4)
-   for cur := head; cur != nil; cur = cur.Next {
-      fmt.Print(cur.Value, " ")
-   } // Output: 2 3 7 9   
+   for cur := head; cur != nil; cur = cur.Next { fmt.Print(cur.Value, " ") } // Output: 2 3 7 9   
    fmt.Println()
    ```
