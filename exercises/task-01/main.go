@@ -4,15 +4,14 @@ import "fmt"
 
 func change(x [5]int) { copy(x[1:3], []int{11, 22}) }
 
-func change2(y *[5]int) { copy(y[1:3], []int{11, 22}) }
+func change2(x *[5]int) { copy(x[1:3], []int{11, 22}) }
 
 func main() {
 	x := [...]int{1, 2, 3, 4, 5}
-	y := [...]int{1, 2, 3, 4, 5}
 	change(x)
-	change2(&y)
 	fmt.Println(x) // Output: [1 2 3 4 5]
-	fmt.Println(y) // Output: [1 11 22 4 5]
+	change2(&x)
+	fmt.Println(x) // Output: [1 11 22 4 5]
 }
 
 //arrays are values in golang, but in language like C, C++, arrays are references
