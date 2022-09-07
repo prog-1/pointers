@@ -26,7 +26,9 @@
 
    This structure represents a linear collection of elements, where the order of
    elements in the physical memory is not defined. We use a reference to the
-   next element, rather than an index like in a slice or array. E.g.
+   next element, rather than an index like in a slice or array. The last element of
+   the collection always points to `nil. And an empty collection is represented as a
+   `nil` pointer. E.g.
 
    ![singly linked list](resources/Singly-linked-list.svg.png)
    
@@ -66,3 +68,19 @@
      ```go
      func Remove(head **Node, x int) (removed bool)
      ```
+
+   Example:
+   
+   ```go
+   var head *Node
+   Append(&head, 7)
+   Prepend(&head, 3)
+   Insert(&head, 4)
+   Insert(&head, 2)
+   Insert(&head, 9)
+   Remove(&head, 4)
+   for cur := head; cur != nil; cur = cur.Next {
+      fmt.Print(cur.Value, " ")
+   } // Output: 2 3 7 9   
+   fmt.Println;
+   ```
