@@ -7,11 +7,15 @@ type Node struct {
 	Next  *Node
 }
 
-func (n Node) asSlice() (slice []int) {
+func (n *Node) asSlice() (slice []int) {
+	if n == nil {
+		return nil
+	}
+
 	for n.Next != nil {
 		//fmt.Println(n.Next)
 		slice = append(slice, n.Value)
-		n = *n.Next
+		n = n.Next
 	}
 	slice = append(slice, n.Value)
 	return
@@ -26,11 +30,11 @@ func Prepend(head **Node, x int) {
 }
 
 func Append(head **Node, x int) {
-	if head == nil {
+	a := *head
+	if a == nil {
 		*head = &Node{Value: x, Next: nil}
 		return
 	}
-	a := *head
 	for a.Next != nil {
 		a = a.Next
 	}
@@ -39,17 +43,20 @@ func Append(head **Node, x int) {
 }
 
 func Insert(n **Node, x int) {
+	// if *n == nil {
+	// 	*n = &Node{Value: x, Next: nil}
+	// }
+	a := *n
 	var prev *Node
-	for *n != nil && (*n).Value < x {
-		prev, n = *n, &((*n).Next)
+	for a.Value < x && a.Next != nil {
+		prev, a = a, a.Next
 	}
-	if prev != nil {
-		prev.Next = &Node{Value: x, Next: *n}
+	if prev == nil {
+		Append(n, x)
 		return
 	}
-	*n = &Node{Value: x, Next: *n}
+	prev.Next = &Node{Value: x, Next: a}
 }
-
 func Contains(head *Node, x int) bool {
 	if head == nil {
 		return false
@@ -65,6 +72,7 @@ func Contains(head *Node, x int) bool {
 }
 
 func Remove(n **Node, x int) (removed bool) {
+	// fmt.Println(*n == nil)
 	for *n != nil && (*n).Value != x {
 		n = &((*n).Next)
 	}
@@ -77,5 +85,9 @@ func Remove(n **Node, x int) (removed bool) {
 
 func main() {
 	var head *Node
-	fmt.Println(Contains(head, 1))
+	for _, v := range []int{1, 2, 4, 5} {
+		Append(&head, v)
+	}
+	Insert(&head, 3)
+	fmt.Println(head.asSlice())
 }
