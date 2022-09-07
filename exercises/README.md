@@ -29,6 +29,8 @@
    next element, rather than an index like in a slice or array. E.g.
 
    ![singly linked list](resources/Singly-linked-list.svg.png)
+   
+   Note: `**Node` in the code below is not a typo. It really means a pointer to a pointer to a `Node`. Try to imagine that and even draw on a paper.
 
    Implement functions that:
 
@@ -44,7 +46,10 @@
      func Append(head **Node, x int)
      ```
 
-   - Insert new elements keeping lexicographical order (keep elements sorted).
+   - Insert new elements keeping lexicographical order (keep elements sorted). Assuming current sequence is [1 5 7 9], if we insert 8,
+     the sequence will become [1 5 7 8 9]. The behavior of `Insert` is not determined if the original sequence was not sorted. In this
+     case you should attempt to insert assuming the sequence was sorted, and you will end up having some of the elements being in the
+     lexicographical order, and some not. It's OK.
 
      ```go
      func Insert(head **Node, x int)
