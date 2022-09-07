@@ -48,6 +48,6 @@ func main() {
 	fmt.Printf("0x%x\n", x)
 	fmt.Printf("%x %x %x %x\n", (*b)[0], (*b)[1], (b)[0], (b)[1])
 	fmt.Printf("most significant - %x\nleast significant- %x\n", b[3], b[0])
-	fmt.Println("least significant is the first byte, the least significant is the last byte")
+	// least significant is the first byte (0x11), the most significant is the last byte (0x44)
 
 }
