@@ -9,8 +9,7 @@ import (
 
 func randNum() int {
 	max, min := 10, 1
-	rand.Seed(time.Now().UnixNano())
-	num := rand.Intn((max - min) + min)
+	num := min + rand.Intn(max-min+1)
 	if num < 2 {
 		return num
 	}
@@ -27,6 +26,7 @@ func changeSlice(x *[]int) {
 	*x = append(*x, randNum(), randNum()+2)
 }
 func main() {
+	rand.Seed(time.Now().UnixNano())
 	//Task 1
 	a := [4]int{}
 	changeA(a)
@@ -34,7 +34,7 @@ func main() {
 	//Task2
 	m := map[int]int{0: 0, 1: 0, 2: 0}
 	changeMap(m)
-	fmt.Println(m) // Maps are references, they changing immediately, without return at the enf of function
+	fmt.Println(m) // Maps are references, they changing immediately, without return at the enf of the function
 	// Task 3
 	s := []int{0, 0, 0, 0}
 	changeSlice(&s)
@@ -42,8 +42,8 @@ func main() {
 	//Task 4
 	b := uint32(0x66557788)
 	b2 := (*[4]byte)(unsafe.Pointer(&b))
-	fmt.Printf("% x\n", &b2)
+	fmt.Printf("% x\n", *b2)
 	fmt.Println(&b2[0], &b2[1], &b2[2], &b2[3])
-	//The least significant is 0x88 beacuse it has the least impact on number value as the smallest
-	//The most significant is 0x66
+	//The least significant is 0x88 , it goes first in computer memory and has smallest value
+	//The most significant is 0x66, it is last in memory and is the largest
 }
