@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -55,7 +56,7 @@ func TestInsert(t *testing.T) {
 	}{
 		{[]int{1, 2, 4, 5}, 3, []int{1, 2, 3, 4, 5}},
 		{[]int{1}, 3, []int{1, 3}},
-		{[]int{3}, 1, []int{3, 1}},
+		{[]int{3}, 1, []int{1, 3}},
 
 		//{[]int{5, 4, 3, 2, 1}},
 	} {
@@ -64,7 +65,9 @@ func TestInsert(t *testing.T) {
 			for _, v := range tc.initialValues[1:] {
 				Append(&n, v)
 			}
+			fmt.Println(n.asSlice())
 			Insert(&n, tc.input)
+			fmt.Println(n.asSlice())
 			if !reflect.DeepEqual(n.asSlice(), tc.output) {
 				t.Errorf("Insert(%v, %v) Output = %v Want = %v", tc.initialValues, tc.input, n.asSlice(), tc.output)
 			}
