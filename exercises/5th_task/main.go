@@ -6,12 +6,10 @@ type Node struct {
 }
 
 func (n Node) asSlice() (slice []int) {
-	i := 0
 	for n.Next != nil {
 		//fmt.Println(n.Next)
 		slice = append(slice, n.Value)
 		n = *n.Next
-		i++
 	}
 	slice = append(slice, n.Value)
 	return
