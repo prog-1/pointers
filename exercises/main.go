@@ -30,13 +30,8 @@ func main() {
 	m := map[string]int{"foo": 1, "bar": 2, "boo": 3}
 	changeM(m)
 	fmt.Println(m)
-	//its not allowed to use this↓↓↓ function with map
 
-	// func changeMP(m *map[string]int) {
-	// 	m["bar"] = 12345
-	// }
-
-	//Maps are references
+	//Maps are references, because changes applied
 
 	//
 	//3
@@ -51,5 +46,8 @@ func main() {
 	x := uint32(0x11223344)
 	b := (*[4]byte)(unsafe.Pointer(&x))
 	fmt.Printf("0x%x\n", x)
+	fmt.Printf("%x %x %x %x\n", (*b)[0], (*b)[1], (b)[0], (b)[1])
 	fmt.Printf("most significant - %x\nleast significant- %x\n", b[3], b[0])
+	fmt.Println("least significant is the first byte, the least significant is the last byte")
+
 }
